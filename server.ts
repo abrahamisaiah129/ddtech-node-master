@@ -53,6 +53,7 @@ app.use(
       "https://www.classroom.dd-techhub.com",
       "https://dashboard.dd-techhub.com/",
       "http://localhost:5173",
+      "https://dd-tech-client-master-8b5edpwut-isaiahs-projects-67393298.vercel.app/",
     ],
   })
 );
