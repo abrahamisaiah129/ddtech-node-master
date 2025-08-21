@@ -29,7 +29,7 @@ console.log("DEBUG PORT:", process.env.PORT);
 console.log("DEBUG MONGODB_URI:", process.env.MONGODB_URI ? "Loaded ✅" : "❌ Missing");
 
 const app = express();
-const PORT = process.env.PORT || 8080; // fallback for local dev
+const PORT = process.env.PORT || 5500; // fallback for local dev
 
 // =========================
 // Database Connection
