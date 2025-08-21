@@ -17,6 +17,7 @@ import { verifyEmail } from "./model/auth/verify-email";
 // =========================
 // Load environment variables
 // =========================
+
 dotenv.config({ path: "./config.env" });
 
 // Debug log to ensure envs are loaded
@@ -30,6 +31,7 @@ const PORT = process.env.PORT || 5500; // fallback for local dev
 // =========================
 // Database Connection
 // =========================
+
 if (!process.env.MONGODB_URI) {
   throw new Error("❌ MONGODB_URI is missing in config.env");
 }
@@ -44,6 +46,7 @@ mongoose
 // =========================
 // Middlewares
 // =========================
+
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(helmet());
@@ -52,6 +55,7 @@ app.use(cookieParser());
 // =========================
 // CORS Setup
 // =========================
+
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
@@ -80,20 +84,25 @@ app.use(
 
 app.use(express.static("./public"));
 
+
 // =========================
 // Routes
 // =========================
+
 app.use(hashPassword());
 app.param("key", verifyKey());
 app.use(`/${process.env.APP_NAME}/:key`, MainController);
 app.get(`/email/ver/:token`, verifyEmail());
 
+
 // =========================
 // Fallback 404
 // =========================
+
 app.use((_req: Request, res: Response, _next: NextFunction) => {
   errorResponce(res, "No route found on this server -", 404);
 });
+
 
 // =========================
 // Start Server
