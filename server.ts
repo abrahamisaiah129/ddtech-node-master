@@ -17,6 +17,9 @@ import { verifyEmail } from "./model/auth/verify-email";
 // =========================
 // Load environment variables
 // =========================
+// =========================
+// Load environment variables
+// =========================
 
 dotenv.config({ path: "./config.env" });
 
@@ -28,6 +31,9 @@ console.log("DEBUG MONGODB_URI:", process.env.MONGODB_URI ? "Loaded ✅" : "❌ 
 const app = express();
 const PORT = process.env.PORT || 5500; // fallback for local dev
 
+// =========================
+// Database Connection
+// =========================
 // =========================
 // Database Connection
 // =========================
@@ -46,12 +52,18 @@ mongoose
 // =========================
 // Middlewares
 // =========================
+// =========================
+// Middlewares
+// =========================
 
 app.use(morgan("combined"));
 app.use(express.json());
 app.use(helmet());
 app.use(cookieParser());
 
+// =========================
+// CORS Setup
+// =========================
 // =========================
 // CORS Setup
 // =========================
@@ -88,6 +100,9 @@ app.use(express.static("./public"));
 // =========================
 // Routes
 // =========================
+// =========================
+// Routes
+// =========================
 
 app.use(hashPassword());
 app.param("key", verifyKey());
@@ -96,7 +111,9 @@ app.get(`/email/ver/:token`, verifyEmail());
 
 
 // =========================
+// =========================
 // Fallback 404
+// =========================
 // =========================
 
 app.use((_req: Request, res: Response, _next: NextFunction) => {
@@ -107,6 +124,10 @@ app.use((_req: Request, res: Response, _next: NextFunction) => {
 // =========================
 // Start Server
 // =========================
+// =========================
+// Start Server
+// =========================
+
 app.listen(PORT, () => {
   console.log(`${process.env.APP_NAME} Server started on port ${PORT}`);
 });
